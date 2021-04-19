@@ -1,0 +1,5 @@
+Build the image
+docker build -t "rnd-test:1.0" .
+
+To play video
+http://localhost:3030/hls/testsrc.mp4/master.m3u8
