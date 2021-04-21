@@ -31,10 +31,12 @@ RUN ./configure --prefix=/usr/local/nginx \
 RUN make
 RUN make install
 RUN rm -rf /usr/local/nginx/html /usr/local/nginx/conf/*.default
-EXPOSE 8080
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
 RUN mkdir /opt/static
 RUN mkdir /opt/static/videos
+RUN mkdir /opt/static/play
+COPY hls.html /opt/static/play/hls.html
+COPY dash.html /opt/static/play/dash.html
 RUN ffmpeg -f lavfi -i testsrc=duration=10:size=1280x720:rate=30 -vcodec libx264 -pix_fmt yuv420p -b:v 2M -f mp4 /opt/static/videos/testsrc.mp4
 ENTRYPOINT ["/usr/local/nginx/sbin/nginx"]
 CMD ["-g", "daemon off;"]

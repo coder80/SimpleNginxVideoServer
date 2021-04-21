@@ -1,5 +1,11 @@
 Build the image
 docker build -t "rnd-test:1.0" .
 
-To play video
-http://localhost:3030/hls/testsrc.mp4/master.m3u8
+run docker 
+docker run -p 8080:8080 rnd-test:1.0
+
+To play video hls
+http://localhost:8080/play/hls.html
+
+To play video dash
+http://localhost:8080/play/dash.html
