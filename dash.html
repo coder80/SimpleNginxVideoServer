@@ -3,14 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>TurtleTube - Basic Test</title>
-    <!-- Load the Shaka Player library. -->
-    <script src="shaka-player.compiled.js"></script>
   </head>
   <body>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <video id="video"
            crossorigin="anonymous"
-	   data-dashjs-player autoplay src="http://localhost:8080/dash/testsrc.mp4/manifest.mpd" controls
+	   data-dashjs-player autoplay src="/dash/testsrc.mp4/manifest.mpd" controls
            controls>
       Your browser does not support HTML5 video.
     </video>
