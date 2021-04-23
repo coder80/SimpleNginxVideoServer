@@ -35,8 +35,10 @@ COPY nginx.conf /usr/local/nginx/conf/nginx.conf
 RUN mkdir /opt/static
 RUN mkdir /opt/static/videos
 RUN mkdir /opt/static/play
+RUN mkdir /opt/static/dash-pr
 COPY hls.html /opt/static/play/hls.html
 COPY dash.html /opt/static/play/dash.html
+COPY key.json /opt/static/dash-pr/key.json
 RUN ffmpeg -f lavfi -i testsrc=duration=10:size=1280x720:rate=30 -vcodec libx264 -pix_fmt yuv420p -b:v 2M -f mp4 /opt/static/videos/testsrc.mp4
 ENTRYPOINT ["/usr/local/nginx/sbin/nginx"]
 CMD ["-g", "daemon off;"]
