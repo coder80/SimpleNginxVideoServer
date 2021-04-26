@@ -25,15 +25,21 @@ async function initPlayer() {
 
   // Listen for error events.
   player.addEventListener('error', onErrorEvent);
+  
+  playerConfig = {
+                drm: {
+                    servers: {
+                        'http://test.playready.microsoft.com/service/rightsmanager.asmx': licenseUri
+                    }
+                }
+            };
 
   // Try to load a manifest.
   // This is an asynchronous process.
-  try { 
-    await player.load(manifestUri);
-    // This runs if the asynchronous load is successful.
-    console.log('The video has now been loaded!');
-  } catch (e) {
-    // onError is executed if the asynchronous load fails.
-    onError(e);
-  }
+    player.load(contentUri).then(function () {
+        // This runs if the asynchronous load is successful.
+        console.log('The video has now been loaded!');
+    }).catch(onError); 
+
+   player.configure(playerConfig);
 }
