@@ -34,6 +34,14 @@ async function initPlayer() {
                 }
             };
 
+  player.getNetworkingEngine().registerRequestFilter(function (type, request) {
+                // Only add headers to license requests:
+                if (type == shaka.net.NetworkingEngine.RequestType.LICENSE) {
+                    console.log("request :" + request.body);
+                    request.headers['pallycon-customdata-v2'] = playreadyToken;
+                }
+            });
+
   // Try to load a manifest.
   // This is an asynchronous process.
     player.load(contentUri).then(function () {
